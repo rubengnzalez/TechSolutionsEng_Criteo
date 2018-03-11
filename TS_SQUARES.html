@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>SQUARES</title>
+	<meta http-equiv="Content-type" content="text/html;charset=iso-8859-1">
+        <link rel="stylesheet" type="text/css" href="./styles/squares.css" >
+
+<!--
+	Author: ruben.gonzalez.lozano@outlook.com
+	github: github.com/rubengnzalez
+	NOTES: 
+		Javascript implemented as internal into HTML for clarity.
+		HTML page TESTED with SUCCESSFUL result in:
+			- Mozilla Firefox
+			- Mozilla Firefox Developers Ed.
+			- Google Chrome
+			- Safari
+			- Internet Explorer (it initially blocks scripts, so permission must be granted to let the squares be hidden)
+-->
+
+</head>
+
+<body>
+
+<div id="main">
+	<div id="top">
+		<div id="sq1" class="square sq_type1">
+		</div>
+		<div id="sq2" class="square sq_type2">
+		</div>
+		<div id="sq3" class="square sq_type1">
+		</div>
+	</div>
+	<div id="buttons">
+		<div id="but_div1">
+			<input type="submit" id="but1" class="input idle" onclick="showCustom(this)" value="Show Blue Only">
+		</div>
+		<div id="but_div2">
+			<input type="submit" id="but2" class="input idle" onclick="showCustom(this)" value="Show Orange Only">
+		</div>
+		<div id="but_div3">
+			<input type="submit" id="but3" class="input idle" onclick="showCustom(this)" value="Show All">
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	function showCustom(button){
+		var i, thisButton;
+		// Get all squares
+		var squares = document.getElementsByClassName("square");
+		if(squares.length > 0){
+			for(i = 0; i < squares.length; i++){
+				switch(button.id){
+					// Show BLue Only
+					case "but1":
+						(squares[i].classList.contains("sq_type1")) ? squares[i].style.display = "block" : squares[i].style.display = "none";
+						break;
+					// Show Orange Only
+					case "but2":
+						(squares[i].classList.contains("sq_type2")) ? squares[i].style.display = "block" : squares[i].style.display = "none";
+						break;
+					// Show all as default behavior
+					case "but3":
+					default:
+						squares[i].style.display = "block";
+				}
+				
+			}
+		}
+
+		var inputs = document.getElementsByClassName("input");
+		if(inputs.length > 0){
+			for(i = 0; i < inputs.length; i++){
+				// Display clicked button as active and remaining ones as idle
+				if(inputs[i].id == button.id){
+					inputs[i].classList.contains("idle") ? inputs[i].classList.remove("idle") : "";
+					inputs[i].classList.add("active");
+				}else{
+					inputs[i].classList.contains("active") ? inputs[i].classList.remove("active") : "";
+					inputs[i].classList.add("idle");
+				}
+			}
+		}
+	}
+</script>
+
+</body>
+
+</html>
